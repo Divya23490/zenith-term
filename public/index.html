@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>warpterm</title>
+  <title>zenith-term</title>
   <link rel="stylesheet" href="/vendor/xterm/css/xterm.css" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
   <header id="topbar">
-    <div class="brand"><span class="dot"></span> warpterm</div>
+    <div class="brand"><span class="dot"></span> zenith-term</div>
     <div class="actions">
       <button id="btn-ask" title="Natural language → command">✨ Ask AI <kbd>⌘K</kbd></button>
       <button id="btn-explain" title="Explain last output / error">🩺 Explain <kbd>⌘E</kbd></button>
@@ -33,7 +33,7 @@
       <div id="agent-view" class="hidden">
         <form id="agent-form">
           <textarea id="agent-task" rows="3" placeholder="Describe the coding task… e.g. add a --verbose flag to cli.py and update its tests"></textarea>
-          <input id="agent-root" type="text" placeholder="Workspace folder (e.g. ~/Downloads/files/warpterm)" autocomplete="off" spellcheck="false" />
+          <input id="agent-root" type="text" placeholder="Workspace folder (e.g. ~/projects/my-app)" autocomplete="off" spellcheck="false" />
           <div class="agent-controls">
             <label class="auto-approve"><input type="checkbox" id="agent-auto" /> auto-approve steps</label>
             <button type="submit" id="agent-go">Start</button>

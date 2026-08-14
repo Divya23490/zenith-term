@@ -1,4 +1,4 @@
-// Electron shell for warpterm: starts the Node server as a child process,
+// Electron shell for zenith-term: starts the Node server as a child process,
 // then opens a native window pointing at it. node-pty's prebuild is N-API,
 // so it loads fine under Electron's embedded Node (ELECTRON_RUN_AS_NODE).
 const { app, BrowserWindow, shell, dialog } = require("electron");
@@ -62,7 +62,7 @@ async function start() {
   serverProc.stderr.on("data", (d) => process.stderr.write(`[server] ${d}`));
   serverProc.on("exit", (code) => {
     if (win && !win.isDestroyed() && code !== 0 && code !== null) {
-      dialog.showErrorBox("warpterm", `Terminal server exited unexpectedly (code ${code}).`);
+      dialog.showErrorBox("zenith-term", `Terminal server exited unexpectedly (code ${code}).`);
       app.quit();
     }
   });
@@ -70,7 +70,7 @@ async function start() {
   try {
     await waitForServer(port);
   } catch (err) {
-    dialog.showErrorBox("warpterm", `Could not start the terminal server: ${err.message}`);
+    dialog.showErrorBox("zenith-term", `Could not start the terminal server: ${err.message}`);
     app.quit();
     return;
   }
@@ -80,7 +80,7 @@ async function start() {
     height: 760,
     minWidth: 640,
     minHeight: 400,
-    title: "warpterm",
+    title: "zenith-term",
     backgroundColor: "#0d1017",
     titleBarStyle: "hiddenInset",
     webPreferences: { contextIsolation: true, nodeIntegration: false },

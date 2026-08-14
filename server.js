@@ -213,7 +213,7 @@ wss.on("connection", (ws, req) => {
 
 server.listen(PORT, () => {
   const info = providerInfo();
-  console.log(`\n  warpterm running at http://localhost:${PORT}`);
+  console.log(`\n  zenith-term running at http://localhost:${PORT}`);
   console.log(`  shell: ${SHELL}`);
   console.log(`  AI: ${info.baseUrl} (model: ${info.model})${info.hasKey ? "" : "  ⚠ no AI_API_KEY set — AI features will fail unless using Ollama"}`);
   if (!AUTH_TOKEN) console.log(`  ⚠ no AUTH_TOKEN set — only run on localhost. Set AUTH_TOKEN before exposing this anywhere.\n`);

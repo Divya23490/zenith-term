@@ -1,4 +1,4 @@
-/* warpterm frontend: xterm.js terminal + AI command bar + explain panel */
+/* zenith-term frontend: xterm.js terminal + AI command bar + explain panel + agent mode */
 
 const params = new URLSearchParams(location.search);
 const TOKEN = params.get("token") || "";

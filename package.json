@@ -1,7 +1,7 @@
 {
-  "name": "warpterm",
+  "name": "zenith-term",
   "version": "0.1.0",
-  "description": "A Warp-style AI terminal: real shell in the browser with natural-language commands, error explanation, and streaming AI help.",
+  "description": "zenith-term: a Warp-style AI terminal with real shell, natural-language commands, error explanation, and an autonomous coding agent.",
   "main": "electron/main.cjs",
   "type": "module",
   "scripts": {
@@ -11,8 +11,8 @@
     "postinstall": "chmod +x node_modules/node-pty/prebuilds/*/spawn-helper 2>/dev/null || true"
   },
   "build": {
-    "appId": "dev.divya.warpterm",
-    "productName": "warpterm",
+    "appId": "dev.divya.zenithterm",
+    "productName": "zenith-term",
     "asar": false,
     "files": [
       ".env",

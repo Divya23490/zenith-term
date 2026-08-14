@@ -1,10 +1,10 @@
-# warpterm
+# zenith-term
 
 A Warp-style AI terminal that runs in your browser. Real shell (via a PTY), plus:
 
 - **✨ Ask AI (⌘K / Ctrl+K)** — describe what you want in plain English, get a shell command back. Review it, then *Insert* (puts it at your prompt) or *Run now*.
 - **🩺 Explain (⌘E / Ctrl+E)** — sends the recent terminal output to the AI and streams back *what happened / why / how to fix it*.
-- **🤖 Auto-suggest** — type plain text (or a typo) straight at the prompt; if the shell can't find it as a command, warpterm automatically asks the AI what you meant and shows the same Insert/Run preview — no hotkey needed. Never auto-runs. Disable with `AUTO_SUGGEST=off`.
+- **🤖 Auto-suggest** — type plain text (or a typo) straight at the prompt; if the shell can't find it as a command, zenith-term automatically asks the AI what you meant and shows the same Insert/Run preview — no hotkey needed. Never auto-runs. Disable with `AUTO_SUGGEST=off`.
 - **🤖 Agent mode (⌘J / Ctrl+J)** — agentic coding: give it a task ("add a --json flag to cli.py and make the tests pass"), pick a workspace folder, and it reads files, writes code, and runs commands in a loop until done. **Every file write shows a diff you approve, every command asks first** (optional auto-approve per session; clearly dangerous commands always ask). Confined to the workspace folder, capped at 25 steps (`AGENT_MAX_STEPS`), auto-waits on free-tier rate limits.
 - Streaming responses, dark Warp-ish theme, works with any OpenAI-compatible model API — **Groq, Ollama, OpenRouter, and Gemini all have free tiers**. Zero-cost by design.
 
@@ -12,15 +12,15 @@ A Warp-style AI terminal that runs in your browser. Real shell (via a PTY), plus
 
 ```bash
 npm run app     # dev mode: launches the Electron window directly
-npm run dist    # builds dist/mac-arm64/warpterm.app (standalone, unsigned)
+npm run dist    # builds dist/mac-arm64/zenith-term.app (standalone, unsigned)
 ```
 
-Drag `dist/mac-arm64/warpterm.app` into `/Applications` to install. It embeds the server (no browser, no `npm start` needed) and reads `.env` from the app's resources folder — for a packaged install, keep your `.env` in the project folder before running `npm run dist`, or edit `warpterm.app/Contents/Resources/app/.env` afterwards. Because the app is unsigned, the first launch on another Mac needs right-click → Open; on this Mac it opens normally.
+Drag `dist/mac-arm64/zenith-term.app` into `/Applications` to install. It embeds the server (no browser, no `npm start` needed) and reads `.env` from the app's resources folder — for a packaged install, keep your `.env` in the project folder before running `npm run dist`, or edit `zenith-term.app/Contents/Resources/app/.env` afterwards. Because the app is unsigned, the first launch on another Mac needs right-click → Open; on this Mac it opens normally.
 
 ## Quick start (local)
 
 ```bash
-cd warpterm
+cd zenith-term
 npm install
 cp .env.example .env       # edit .env — add your Groq key (or switch to Ollama)
 set -a; source .env; set +a
