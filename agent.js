@@ -258,7 +258,18 @@ export class AgentSession {
     }
   }
 
+  // Public entry point. Guarantees `active` is cleared however the session
+  // ends (done / error / step limit / throw) — otherwise the connection's
+  // "already running" guard would block every future session.
   async run() {
+    try {
+      await this.#loop();
+    } finally {
+      this.active = false;
+    }
+  }
+
+  async #loop() {
     if (!fs.existsSync(this.root) || !fs.statSync(this.root).isDirectory()) {
       this.send({ type: "agent-error", message: `Workspace root does not exist: ${this.root}` });
       return;
