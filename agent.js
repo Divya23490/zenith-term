@@ -48,7 +48,14 @@ Rules:
 - Verify your work: after writing code, run it or its tests before declaring done.
 - If a result says DENIED, the user rejected that step — take a different approach, never repeat the identical request.
 - All strings must be valid JSON: escape newlines as \\n and quotes as \\".
-- Never touch files outside the task's scope; never run destructive commands.`;
+- Never touch files outside the task's scope; never run destructive commands.
+
+When the task is to REVIEW, ANALYZE, or IMPROVE code (rather than build something):
+- You MUST read the actual source files line by line with "read" before drawing any conclusion. Running tests or builds is NOT a review — passing tests never proves the logic is good.
+- Recurse into source directories with "list" to find every relevant source file; read each one that matters to the task.
+- Judge the code itself: correctness bugs, edge cases, inefficient logic (unnecessary loops/allocations, wrong data structures), duplicated code, misleading names, missing error handling, missed language idioms.
+- Your "done" summary must cite SPECIFIC findings — file, what to change, and why, e.g. "Calculator.cs: Add() re-parses the input string on every call; parse once in the constructor". If the task asks for improvements, either apply them via "write" (preferred) or list each one concretely.
+- Saying "no issues found" is only allowed after reading every relevant source file, and you must list which files you read and what you checked for.`;
 
 // Extract the first balanced JSON object from model text (tolerates ```json fences and stray prose).
 function parseAction(text) {
@@ -335,7 +342,7 @@ export class AgentSession {
       if (action.note) this.emit("note", { text: String(action.note).slice(0, 300) });
 
       if (action.action === "done") {
-        this.send({ type: "agent-done", summary: String(action.summary || "Task finished.").slice(0, 2000), steps: step });
+        this.send({ type: "agent-done", summary: String(action.summary || "Task finished.").slice(0, 4000), steps: step });
         return;
       }
 
