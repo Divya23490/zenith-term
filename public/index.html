@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>warpterm</title>
+  <link rel="stylesheet" href="/vendor/xterm/css/xterm.css" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header id="topbar">
+    <div class="brand"><span class="dot"></span> warpterm</div>
+    <div class="actions">
+      <button id="btn-ask" title="Natural language → command">✨ Ask AI <kbd>⌘K</kbd></button>
+      <button id="btn-explain" title="Explain last output / error">🩺 Explain <kbd>⌘E</kbd></button>
+      <button id="btn-agent" title="Agentic coding: multi-file edits, run tests, iterate">🤖 Agent <kbd>⌘J</kbd></button>
+      <span id="conn-status" class="status">connecting…</span>
+    </div>
+  </header>
+
+  <main id="layout">
+    <div id="terminal-wrap">
+      <div id="terminal"></div>
+    </div>
+
+    <aside id="ai-panel" class="hidden">
+      <div class="panel-head">
+        <span id="panel-title">AI</span>
+        <button id="panel-close" title="Close">✕</button>
+      </div>
+      <div id="ai-output"></div>
+
+      <div id="agent-view" class="hidden">
+        <form id="agent-form">
+          <textarea id="agent-task" rows="3" placeholder="Describe the coding task… e.g. add a --verbose flag to cli.py and update its tests"></textarea>
+          <input id="agent-root" type="text" placeholder="Workspace folder (e.g. ~/Downloads/files/warpterm)" autocomplete="off" spellcheck="false" />
+          <div class="agent-controls">
+            <label class="auto-approve"><input type="checkbox" id="agent-auto" /> auto-approve steps</label>
+            <button type="submit" id="agent-go">Start</button>
+            <button type="button" id="agent-stop-btn" class="danger hidden">Stop</button>
+          </div>
+        </form>
+        <div id="agent-log"></div>
+      </div>
+
+      <div id="cmd-preview" class="hidden">
+        <code id="cmd-text"></code>
+        <div class="preview-actions">
+          <button id="cmd-insert">Insert ⏎</button>
+          <button id="cmd-run" class="danger">Run now</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div id="ask-overlay" class="hidden">
+    <div id="ask-box">
+      <span class="ask-icon">✨</span>
+      <input id="ask-input" type="text" placeholder="Describe what you want to do… e.g. find the 5 largest files in this folder" autocomplete="off" />
+      <kbd>esc</kbd>
+    </div>
+  </div>
+
+  <script src="/vendor/xterm/lib/xterm.js"></script>
+  <script src="/vendor/addon-fit/lib/addon-fit.js"></script>
+  <script src="/vendor/addon-web-links/lib/addon-web-links.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

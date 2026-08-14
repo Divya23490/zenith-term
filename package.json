@@ -1,0 +1,53 @@
+{
+  "name": "warpterm",
+  "version": "0.1.0",
+  "description": "A Warp-style AI terminal: real shell in the browser with natural-language commands, error explanation, and streaming AI help.",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "app": "electron electron/main.cjs",
+    "dist": "electron-builder --mac dir",
+    "postinstall": "chmod +x node_modules/node-pty/prebuilds/*/spawn-helper 2>/dev/null || true"
+  },
+  "build": {
+    "appId": "dev.divya.warpterm",
+    "productName": "warpterm",
+    "asar": false,
+    "files": [
+      ".env",
+      "electron/**",
+      "server.js",
+      "ai.js",
+      "agent.js",
+      "public/**",
+      "package.json",
+      "node_modules/**",
+      "!node_modules/electron/**",
+      "!node_modules/electron-builder/**",
+      "!node_modules/.bin/**"
+    ],
+    "extraResources": [],
+    "mac": {
+      "target": "dir",
+      "identity": null,
+      "category": "public.app-category.developer-tools"
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/addon-web-links": "^0.11.0",
+    "@xterm/xterm": "^5.5.0",
+    "express": "^4.21.2",
+    "node-pty": "^1.0.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "electron": "^43.4.0",
+    "electron-builder": "^26.15.3"
+  }
+}
